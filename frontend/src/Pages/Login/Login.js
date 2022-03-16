@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 
 class Login extends React.Component{
@@ -13,8 +14,29 @@ state={
 
     }
 
+    loginUser () {
+        let usuario = this.state.user;
+        let pass = this.state.password;
+  
+        axios.post("http://localhost:5000/login", {usuario,  pass})
+        .then(res => {
+  
+          if(res.data.result){
+            this.props.setToken(res.data.token);
+            this.props.history.push('/')
+          }
+          else{
+            this.setState({
+              error: true,
+            })
+          }
+          return;
+        })
+    }
+
     handleSubmit=(e)=>{
             e.preventDefault()
+            this.loginUser();
     }
 
 

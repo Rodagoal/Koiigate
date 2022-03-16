@@ -1,5 +1,13 @@
 {
+  
+
   "dependencies": {
     "express": "^4.17.3"
-  }
+  },
+
+  "scripts": {
+    "start": "app.js"
+  },
+  "proxy": "http://localhost:5000/"
+
 }
