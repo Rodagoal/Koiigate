@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import
 
 
 class Login extends React.Component{
@@ -44,7 +45,11 @@ state={
         return(
             
                 
-                <div>
+                <div className='div-login'>
+                    <div className='div-login-logo'>
+                        <Logo/>
+                    </div>
+
                     <form onSubmit ={this.handleSubmit}>
                         <input type='user' name='user' placeholder='user...' required onChange={this.handleChange}></input>
                         <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}></input>
