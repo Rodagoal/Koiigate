@@ -10,6 +10,9 @@ class Login extends React.Component{
 
     }
     
+    componentDidMount(){
+      this.caliz()
+    }
 
     handleChange=(e)=>{
         const{name,value}=e.target
@@ -17,9 +20,23 @@ class Login extends React.Component{
 
     }
 
+    caliz (){
+
+      axios.post("http://localhost:5000/login")
+      .then(res =>{
+        if(res.data){
+          console.log(res.data)
+        }
+        else{
+        }
+        return;
+      })  
+    }
+
     loginUser () {
         let usuario = this.state.user;
         let pass = this.state.password;
+
   
         axios.post("http://localhost:5000/login", {usuario,  pass})
         .then(res => {
@@ -48,23 +65,8 @@ class Login extends React.Component{
             
                 
                 <div className='div-login'>
-                    <div className='div-login-logo'>
-                        
-                    </div>
-
-                    <form onSubmit ={this.handleSubmit}>
-                        <input type='user' name='user' placeholder='user...' required onChange={this.handleChange}></input>
-                        <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}></input>
-
-                        <button onSubmit ={this.handleSubmit}>Log in</button>
-
-                    </form>
-
+                  <h1>Hola</h1>
                 </div>
-
-
-           
-
         )
     }
 }
