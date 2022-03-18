@@ -1,19 +1,27 @@
 import React from 'react';
 import axios from 'axios';
+import './login.css';
+import  Logo from '../../assets/Logo.jpg';
 
 
 
 class Login extends React.Component{
-    state={
+   
+  constructor(props){
+    super(props);
+    this.state={
       user:'',
       pwd:''
 
     }
-    
+  }
+  
 
     handleChange=(e)=>{
-        const{name,value}=e.target
-        this.setState({[name]:value})
+        console.log(e.target.value)
+     
+        this.setState({[e.target.name]:e.target.value})
+        
 
     }
 
@@ -48,15 +56,22 @@ class Login extends React.Component{
             
                 
                 <div className='div-login'>
-                    <div className='div-login-logo'>
-                        
+                    <div >
+                       <img
+                       src={Logo}
+                       width="95%"
+                       height="95%"
+                       className="align-center"
+                       alt="React Bootstrap logo"
+                       
+                       />
                     </div>
 
                     <form onSubmit ={this.handleSubmit}>
-                        <input type='user' name='user' placeholder='user...' required onChange={this.handleChange}></input>
-                        <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}></input>
+                        <input className='input' type='user' name='user' placeholder='Usuario...' required onChange={this.handleChange}></input>
+                        <input className='input' type='password' name='pwd' placeholder='Contraseña...' required onChange={this.handleChange}></input>
 
-                        <button onSubmit ={this.handleSubmit}>Log in</button>
+                        <button className='button' onSubmit ={this.handleSubmit}>Ingresar</button>
 
                     </form>
 
