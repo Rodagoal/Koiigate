@@ -19,9 +19,17 @@ app.use(cors());
     res.send("Node here!");
 })*/
 
-app.post('/', (
+//post mandar
+//res peticion original
+//response para mandar datos
+app.post('/login', (
     req, res) => {
-    res.send(connection.query('SELECT * from Admin'));
+        connection.query('SELECT * from Admin', (err, response, fields) => {
+            if(err) console.log(err)
+            else {
+      res.send(response)
+      }
+    })
 })
 
 app.listen(port, function(){
