@@ -15,9 +15,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json());
 app.use(cors());
 
-/*app.get("/", function(req, res) {
-    res.send("Node here!");
-})*/
 
 //post mandar
 //res peticion original

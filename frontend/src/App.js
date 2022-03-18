@@ -2,20 +2,38 @@ import React from 'react';
 import {Router, Route} from 'react-router-dom'
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import Login from "./Pages/Login/Login"
+
+import {Routes,Route} from 'react-router-dom'
+import Home from './Pages/Home/Home'
+import Reportes from './Pages/Reportes/Reportes'
+import Login from './Pages/Login/Login'
+
 
 
 
 function App() {
   return (
-   <div className="App">
-     <Navbar />
-     <Login>
 
-     </Login>
-     <h1>React here!</h1>
-   </div>
-  );
+   
+        <div className="App">
+          <Navbar/>
+        
+          <Routes>
+              
+              <Route exact path="/Login" element={<Login/>}/>
+              <Route exact path="/Home" element={<Home/>}/>
+                      
+                        
+          </Routes>
+              
+        
+
+        </div>
+ 
+        
+   
+  )
+
 }
   
 export default App;
