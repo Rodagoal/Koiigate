@@ -12,10 +12,12 @@ function App() {
   return (
    
         <div className="App">
+          <Navbar/>
         
           <Routes>
               
-              <Route exact path="/" element={<Login/>}/>
+              <Route exact path="/Login" element={<Login/>}/>
+              <Route exact path="/Home" element={<Home/>}/>
                       
                         
           </Routes>

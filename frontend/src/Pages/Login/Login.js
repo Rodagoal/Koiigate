@@ -17,6 +17,10 @@ class Login extends React.Component{
   }
   
 
+  componentDidMount(){
+    this.caliz()
+  }
+
     handleChange=(e)=>{
         console.log(e.target.value)
      
@@ -24,26 +28,39 @@ class Login extends React.Component{
         
 
     }
+    caliz (){
+
+      axios.post("http://localhost:5000/login")
+      .then(res =>{
+        if(res.data){
+          console.log(res.data)
+        }
+        else{
+        }
+        return;
+      })
+    }
 
     loginUser () {
-        let usuario = this.state.user;
-        let pass = this.state.password;
-  
-        axios.post("http://localhost:5000/login", {usuario,  pass})
-        .then(res => {
-  
-          if(res.data.result){
-            this.props.setToken(res.data.token);
-            this.props.history.push('/')
-          }
-          else{
-            this.setState({
-              error: true,
-            })
-          }
-          return;
-        })
-    }
+      let usuario = this.state.user;
+      let pass = this.state.password;
+
+
+      axios.post("http://localhost:5000/login", {usuario,  pass})
+      .then(res => {
+
+        if(res.data.result){
+          this.props.setToken(res.data.token);
+          this.props.history.push('/')
+        }
+        else{
+          this.setState({
+            error: true,
+          })
+        }
+        return;
+      })
+  }
 
     handleSubmit=(e)=>{
             e.preventDefault()
