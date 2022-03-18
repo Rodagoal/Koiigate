@@ -1,13 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import
+
 
 
 class Login extends React.Component{
-state={
-    email:'',
-    pwd:''
-}
+    state={
+      user:'',
+      pwd:''
+
+    }
+    
 
     handleChange=(e)=>{
         const{name,value}=e.target
@@ -47,7 +49,7 @@ state={
                 
                 <div className='div-login'>
                     <div className='div-login-logo'>
-                        <Logo/>
+                        
                     </div>
 
                     <form onSubmit ={this.handleSubmit}>
