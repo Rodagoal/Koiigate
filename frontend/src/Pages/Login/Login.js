@@ -14,12 +14,14 @@ class Login extends React.Component{
       pwd:''
 
     }
+
   }
   
 
   componentDidMount(){
     this.caliz()
   }
+
 
     handleChange=(e)=>{
         console.log(e.target.value)
@@ -41,7 +43,21 @@ class Login extends React.Component{
       })
     }
 
+    caliz (){
+
+      axios.post("http://localhost:5000/login")
+      .then(res =>{
+        if(res.data){
+          console.log(res.data)
+        }
+        else{
+        }
+        return;
+      })  
+    }
+
     loginUser () {
+
       let usuario = this.state.user;
       let pass = this.state.password;
 
@@ -62,6 +78,7 @@ class Login extends React.Component{
       })
   }
 
+
     handleSubmit=(e)=>{
             e.preventDefault()
             this.loginUser();
@@ -73,6 +90,7 @@ class Login extends React.Component{
             
                 
                 <div className='div-login'>
+
                     <div >
                        <img
                        src={Logo}
@@ -92,11 +110,8 @@ class Login extends React.Component{
 
                     </form>
 
+
                 </div>
-
-
-           
-
         )
     }
 }
