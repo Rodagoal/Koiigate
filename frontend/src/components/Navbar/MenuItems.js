@@ -3,6 +3,7 @@
         title:'Home',
         url: '#',
         cName: 'nav-links'
+        //Image: '../assets/Logo TEDI colores originales1.jpg'
 
     },
     {
