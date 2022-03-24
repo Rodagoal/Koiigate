@@ -3,7 +3,8 @@ import React from 'react'
 function Reportes() {
     return (
         <div>
-            <h1>Pagina de reportes</h1>
+           
+            <h1>Pagina de perfil</h1>
         </div>
     )
 }
