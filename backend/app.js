@@ -16,7 +16,6 @@ app.use(express.json());
 app.use(cors());
 
 
-
 //post mandar
 //res peticion original
 //response para mandar datos

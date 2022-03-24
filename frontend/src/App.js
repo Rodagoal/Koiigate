@@ -1,7 +1,11 @@
 import React from 'react';
+import {Router, Route} from 'react-router-dom'
 import './App.css';
+
 import NavbarComp from "./components/Navbar/NavbarComp";
 import {Routes,Route, BrowserRouter} from 'react-router-dom'
+
+
 import Home from './Pages/Home/Home'
 import Reportes from './Pages/Reportes/Reportes'
 import Login from './Pages/Login/Login'
@@ -14,7 +18,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
 function App() {
+
   return (      
           
           <div className="App">
@@ -22,6 +28,7 @@ function App() {
             <NavbarComp/>
             <div className="Contenido">
               <Routes>
+
         
                   <Route exact path="/Login" element={<Login/>}/>
                   <Route exact path="/Home" element={<Home/>}/>
@@ -45,6 +52,7 @@ function App() {
         
    
   )
+
 }
   
 export default App;
