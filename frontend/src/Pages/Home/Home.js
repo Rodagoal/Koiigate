@@ -4,27 +4,33 @@ import 'bootstrap/dist/css/bootstrap.css';
 import foto1 from './Imagenes/foto1.png';
 import foto2 from './Imagenes/foto2.jpg';
 import foto3 from './Imagenes/foto3.jpg';
+import "./styles.css";
+
 
 
 
 function Home() {
 
   return (
-    <div style={{ display: 'block', width:1000, padding: 30 }}>
+    <div style={{ display: 'center', width:1000, padding: 30 }}>
       <h4>React-Bootstrap Carousel Component</h4>
       <Carousel>
-        <Carousel.Item interval={1500}>x
-          <img
+        <Carousel.Item interval={15000}>
+          <div>
+            
+            <img
             className="d-block w-100"
             src={foto1}
             alt="Image One"
-          />
+           />
+          </div>
+          
           <Carousel.Caption>
-            <h3>Progreso</h3>
-            <p>Sample Text for Image One</p>
+          <button className="buttons">Progreso</button>
+            <p className="text">Aqui puedes</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={1500}>
+        <Carousel.Item interval={15000}>
           <img
             className="d-block w-100"
             src={foto2}
@@ -35,7 +41,7 @@ function Home() {
             <p>Sample Text for Image Two</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={1500}>
+        <Carousel.Item interval={15000}>
           <img
             className="d-block w-100"
             src={foto3}
@@ -43,7 +49,7 @@ function Home() {
           />
           <Carousel.Caption>
             <h3>Perfil</h3>
-            <p>Sample Text for Image Two</p>
+            <p>Sample Text for Image Three</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

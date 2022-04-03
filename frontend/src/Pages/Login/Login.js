@@ -43,18 +43,7 @@ class Login extends React.Component{
       })
     }
 
-    caliz (){
-
-      axios.post("http://localhost:5000/login")
-      .then(res =>{
-        if(res.data){
-          console.log(res.data)
-        }
-        else{
-        }
-        return;
-      })  
-    }
+  
 
     loginUser () {
 
