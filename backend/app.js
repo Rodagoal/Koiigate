@@ -1,34 +1,21 @@
+require('dotenv').config();
 const cors = require("cors"); 
 const express = require("express");
 const app = express();
-const port = 5000;
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: "tedi"
-});
-connection.connect();
+//SETTINGS
+app.set('port', process.env.PORT || 5000);
 
-app.use(express.urlencoded({extended: false}))
+//MIDDLEWARE
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cors());
 
+//ROUTES
+app.use('/login', require('./routes/loginRoute.js'));
+app.use('/profiles', require('./routes/userManagementRoute.js'));
 
-//post mandar
-//res peticion original
-//response para mandar datos
-app.post('/login', (
-    req, res) => {
-        connection.query('SELECT * from Admin', (err, response, fields) => {
-            if(err) console.log(err)
-            else {
-      res.send(response)
-      }
-    })
-})
-
-app.listen(port, function(){
-    console.log("express server running on port ${port}!");
+app.listen(app.get('port'), function(){
+    console.log(`express server running on port`, app.get('port'));
 });
