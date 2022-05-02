@@ -1,119 +1,128 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import AuthContext from "../../context/AuthProvider";
+import axios from '../../axios/axios';
 import './login.css';
 import  Logo from '../../assets/Logo.jpg';
+import { Button, Dropdown, DropdownButton, Alert } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
+const LOGIN_URL = '/login'
 
+export const Login = () =>{
+  const { setAuth } = useContext(AuthContext);
+  const userRef = useRef();
+  const errRef = useRef();
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
+  const [msg, setMsg] = useState('');
+  const [variante, setVariante] = useState('');
+  const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    userRef.current.focus();
+  }, [])
 
-class Login extends React.Component{
-   
-  constructor(props){
-    super(props);
-    this.state={
-      user:'',
-      pwd:''
+  useEffect(() => {
+    setMsg('');
+  }, [user, password])
 
-    }
-
-  }
   
-
-  componentDidMount(){
-    this.caliz()
+  //HANDLES
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(LOGIN_URL, {
+        user: user,
+        password: password,
+        role: role
+        });
+      setShow(true)
+      setUser('')
+      setPassword('')
+      setRole('')
+      navigate('/home');
+      if(response.status === 200){
+        setMsg("Login exitoso, BIENVENIDO!")
+        setVariante('success');
+        console.log(response)
+      }
+    } catch (error) {
+      setShow(true)
+      if(!error?.response){
+        setMsg('No hay respuesta del servidor');
+        setVariante('danger');
+      } else if(error.response?.status === 400){
+        setMsg(error.response.data.message);
+        setVariante('danger');
+      } else if(error.response?.status === 401){
+        setMsg('Usuario sin autorización');
+        setVariante('danger');
+      } else if(error.response?.status === 403){
+        setMsg(error.response.data.message);
+        setVariante('danger');
+      }
+      errRef.current.focus();
+    }
   }
 
-
-    handleChange=(e)=>{
-        console.log(e.target.value)
-     
-        this.setState({[e.target.name]:e.target.value})
-        
-
-    }
-    caliz (){
-
-      axios.post("http://localhost:5000/login")
-      .then(res =>{
-        if(res.data){
-          console.log(res.data)
-        }
-        else{
-        }
-        return;
-      })
-    }
-
-    caliz (){
-
-      axios.post("http://localhost:5000/login")
-      .then(res =>{
-        if(res.data){
-          console.log(res.data)
-        }
-        else{
-        }
-        return;
-      })  
-    }
-
-    loginUser () {
-
-      let usuario = this.state.user;
-      let pass = this.state.password;
-
-
-      axios.post("http://localhost:5000/login", {usuario,  pass})
-      .then(res => {
-
-        if(res.data.result){
-          this.props.setToken(res.data.token);
-          this.props.history.push('/')
-        }
-        else{
-          this.setState({
-            error: true,
-          })
-        }
-        return;
-      })
+  const handleSelect=(e)=>{
+    console.log(e)
+    setRole(e)
   }
 
-
-    handleSubmit=(e)=>{
-            e.preventDefault()
-            this.loginUser();
-    }
-
-
-    render(){
-        return(
-            
-                
-                <div className='div-login'>
-
-                    <div >
-                       <img
-                       src={Logo}
-                       width="95%"
-                       height="95%"
-                       className="align-center"
-                       alt="React Bootstrap logo"
-                       
-                       />
-                    </div>
-
-                    <form onSubmit ={this.handleSubmit}>
-                        <input className='input' type='user' name='user' placeholder='Usuario...' required onChange={this.handleChange}></input>
-                        <input className='input' type='password' name='pwd' placeholder='Contraseña...' required onChange={this.handleChange}></input>
-
-                        <button className='button' onSubmit ={this.handleSubmit}>Ingresar</button>
-
-                    </form>
-
-
-                </div>
-        )
-    }
+  return(
+        <div className='div-login'>
+          <div >
+            <Alert 
+            show={show}
+            variant={variante}
+            onClose={() => setShow(false)}
+            dismissible>
+              <Alert.Heading>
+                {msg}
+              </Alert.Heading>
+            </Alert>
+            <img
+            src={Logo}
+            width="95%"
+            height="95%"
+            className="align-center"
+            alt="React Bootstrap logo"                       
+            />
+            </div>
+            <DropdownButton
+            id="dropdown-item-button"
+            title="Seleccione su rol"
+            type='role'
+            onSelect = {handleSelect}>
+              <Dropdown.Item eventKey="admin">Administrador</Dropdown.Item>
+              <Dropdown.Item eventKey="tutor">Tutor</Dropdown.Item>
+            </DropdownButton>
+            <h4>Bienvenido {role}</h4>
+            <form onSubmit ={handleSubmit}>
+              <input
+                className='input'
+                type='user'
+                name='user'
+                placeholder='Usuario...'
+                ref={userRef}
+                value={user}
+                required onChange={(e) => setUser(e.target.value)}>
+              </input>
+              <input 
+                className='input'
+                type='password'
+                name='pwd'
+                placeholder='Contraseña...'
+                value={password}
+                required
+                onChange={(e) => setPassword(e.target.value)}>
+              </input>
+            <Button type = "submit" ClassName = "button" onSubmit ={handleSubmit}>Ingresar</Button>
+            </form>
+        </div>
+    )
 }
 
 export default Login;

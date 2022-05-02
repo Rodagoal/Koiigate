@@ -1,6 +1,6 @@
 .div-login{
-    width: 300px;
-    height:  400px; 
+    width: 400px;
+    height:  500px; 
     display: flex;  
     flex-direction: column;
     justify-content: space-evenly;
@@ -8,7 +8,7 @@
     border: 1px solid #dbdbdb;
     border-radius: 5px;
     padding: 20px;
-    margin-top: 10vh;
+    margin-top: 7vh;
     background-color: white;
 }
 .div-login-logo{
@@ -26,7 +26,6 @@
     background-color: #fafafa;
     box-sizing: none;
     font-family:  'Public Sans', sans-serif;
-
 }
 .button{
     width: 95%;
@@ -39,5 +38,4 @@
     color: white;
     align-self: center;
     border-radius: 5px;
-
 }
