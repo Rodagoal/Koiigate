@@ -1,0 +1,17 @@
+.float-parent-element { 
+    width: 50%; 
+} 
+.float-child-element { 
+    float: left; 
+    width: 50%; 
+} 
+.red { 
+    background-color: red; 
+    margin-left: 50%; 
+    height: 100px; 
+} 
+.yellow { 
+    margin-left: 50%; 
+    height: 100px; 
+    background-color: yellow; 
+}

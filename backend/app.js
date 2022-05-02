@@ -15,13 +15,18 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json());
 app.use(cors());
 
-/*app.get("/", function(req, res) {
-    res.send("Node here!");
-})*/
 
-app.post('/', (
+//post mandar
+//res peticion original
+//response para mandar datos
+app.post('/login', (
     req, res) => {
-    res.send(connection.query('SELECT * from Admin'));
+        connection.query('SELECT * from Admin', (err, response, fields) => {
+            if(err) console.log(err)
+            else {
+      res.send(response)
+      }
+    })
 })
 
 app.listen(port, function(){
