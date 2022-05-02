@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Reportes() {
+function Perfil() {
     return (
         <div>
            
@@ -9,4 +9,4 @@ function Reportes() {
     )
 }
 
-export default Reportes
+export default Perfil
